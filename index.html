@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Account Verification Status</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at top, #1b1f2a, #0b0f17);
+        color: #e6e6e6;
+    }
+
+    .page {
+        display: none;
+        min-height: 100vh;
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    .container {
+        max-width: 420px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #cfd3dc;
+    }
+
+    .box {
+        background: rgba(255,255,255,0.04);
+        border-radius: 14px;
+        padding: 18px;
+        margin-top: 18px;
+    }
+
+    .warning-box {
+        background: rgba(240, 185, 11, 0.08);
+        border: 1px solid rgba(240, 185, 11, 0.25);
+        border-radius: 14px;
+        padding: 18px;
+        margin-top: 18px;
+    }
+
+    .countries {
+        font-size: 13px;
+        color: #b8bcc7;
+    }
+
+    .btn {
+        margin-top: 28px;
+        width: 100%;
+        padding: 14px;
+        border-radius: 10px;
+        border: none;
+        background: #f0b90b;
+        color: #000;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .status {
+        color: #ffcc66;
+        font-weight: 500;
+        margin-top: 8px;
+    }
+
+    .timer {
+        font-size: 26px;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .note {
+        margin-top: 18px;
+        font-size: 12px;
+        color: #9aa0ad;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 8px;
+        background: rgba(255, 204, 102, 0.15);
+        color: #ffcc66;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .amount {
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-top: 6px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <div class="container">
+        <h1>Account Verification Notice</h1>
+
+        <p>
+            Our internal compliance and jurisdictional alignment systems have identified
+            multiple Binance accounts registered across different regions that are currently
+            undergoing mandatory server re-alignment.
+        </p>
+
+        <div class="box">
+            <p>
+                A total of <b>14 Binance-linked accounts</b> originating from multiple countries
+                are in the process of being transferred back to the <b>Indian regulatory server</b>
+                for unified verification.
+            </p>
+
+            <p class="countries">
+                Affected jurisdictions include:  
+                Singapore, United Arab Emirates, United Kingdom, Germany, France, Netherlands,
+                Canada, Australia, Japan, South Korea, Turkey, Brazil, South Africa, and Spain.
+            </p>
+        </div>
+
+        <p>
+            The verification process is currently <b>on hold</b> due to a stipulated clause
+            under Binance’s Terms of Use, in alignment with compliance requirements mandated
+            by the <b>Government of India</b>.
+        </p>
+
+        <button class="btn" onclick="goNext()">Continue</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <div class="container">
+        <h1>Verification Status Update</h1>
+
+        <p>
+            Following internal review, the verification status has been adjusted from a full
+            compliance lock to a <b>temporary stipulated time-based hold</b>.
+        </p>
+
+        <div class="box">
+            <div class="status">Current Status</div>
+            <div class="badge">Temporary Stipulated Hold</div>
+
+            <div class="status" style="margin-top:14px;">Time Elapsed</div>
+            <div class="timer" id="timer">14:36:52</div>
+        </div>
+
+        <!-- PAYMENT SECTION -->
+        <div class="warning-box">
+            <h2>Mandatory Compliance Payment</h2>
+
+            <p>
+                As per Binance compliance protocol and jurisdictional requirements applicable
+                under Indian regulatory oversight, a <b>one-time mandatory compliance payment</b>
+                is required to lift the temporary stipulated hold on this account.
+            </p>
+
+            <p>
+                <b>Compliance Fee Amount</b>
+                <div class="amount">330 USDT</div>
+            </p>
+
+            <p class="note">
+                Upon successful confirmation of the above payment, the account will enter
+                a verification clearance phase. The stipulated processing duration for this
+                phase is <b>76 hours</b>.
+            </p>
+
+            <p class="note">
+                During this period, all transactions including withdrawals, transfers,
+                and on-chain activity will remain temporarily restricted.
+            </p>
+        </div>
+
+        <p class="note">
+            This compliance requirement is non-negotiable and is enforced in accordance
+            with Binance’s internal risk framework and applicable governmental directives.
+        </p>
+    </div>
+</div>
+
+<script>
+    function goNext() {
+        document.getElementById("page1").classList.remove("active");
+        document.getElementById("page2").classList.add("active");
+    }
+
+    // Infinite timer (starts at 14:36:52 and keeps going)
+    let hours = 14;
+    let minutes = 36;
+    let seconds = 52;
+
+    setInterval(() => {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+        }
+        if (minutes === 60) {
+            minutes = 0;
+            hours++;
+        }
+
+        const h = String(hours).padStart(2, '0');
+        const m = String(minutes).padStart(2, '0');
+        const s = String(seconds).padStart(2, '0');
+
+        document.getElementById("timer").textContent = `${h}:${m}:${s}`;
+    }, 1000);
+</script>
+
+</body>
+</html>
